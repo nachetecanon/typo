@@ -41,6 +41,18 @@ Given /^the blog is set up$/ do
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
+
+  User.create!({:login => 'nacho',
+                :password => 'aaaaaaaa',
+                :email => 'joe@snow.com',
+                :profile_id => 1,
+                :name => 'admin',
+                :state => 'active'})
+end
+Given /^two related articles have been created with following data:$/ do |article|
+  fields.rows_hash.each do |name, value|
+    Article.create!(:title=> name,:body=>value,:published=>true,:published_at=>Time.now)
+  end
 end
 
 And /^I am logged into the admin panel$/ do
@@ -54,7 +66,17 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
-
+And /^I am logged as normal user$/ do
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'nacho'
+  fill_in 'user_password', :with => 'aaaaaaaa'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -102,13 +124,19 @@ end
 #
 When /^(?:|I )fill in the following:$/ do |fields|
   fields.rows_hash.each do |name, value|
-    When %{I fill in "#{name}" with "#{value}"}
+    step %{I fill in "#{name}" with "#{value}"}
   end
 end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
+
+When /^(?:|I )check "([^"]*)"$/ do |field|
+  check(field)
+end
+
+When /^(?:|I )uncheck "([^"]*)"$/ do |field|
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
@@ -161,7 +189,11 @@ Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
     assert page.has_no_xpath?('//*', :text => regexp)
   end
 end
-
+Then /^the field "([^"]*)" should( not)? exist$/ do |field,negate|
+  expectation = negate ? :should_not : :should
+  field = find_field(field)
+  field.send(expectation,be_present)
+end
 Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
   with_scope(parent) do
     field = find_field(field)
@@ -226,12 +258,6 @@ Then /^the "([^"]*)" field should have no error$/ do |field|
   else
     assert !classes.include?('field_with_errors')
     assert !classes.include?('error')
-  end
-end
-
-Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, parent|
-  with_scope(parent) do
-    field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
       field_checked.should be_true
     else
