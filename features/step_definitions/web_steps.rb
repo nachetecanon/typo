@@ -50,9 +50,11 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 Given /^two related articles have been created with following data:$/ do |article|
+  user = User.find_by_login('nacho')
   article.hashes.each do |art|
     a=Article.create(art)
     a.published=true
+    a.user=user
     a.save!
   end
 end
