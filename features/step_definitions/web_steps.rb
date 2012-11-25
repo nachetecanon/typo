@@ -56,10 +56,11 @@ Given /^the blog is set up$/ do
                 :state => 'active'})                
 end
 Given /^two related articles have been created with following data:$/ do |article|
-  user = User.find_by_login('nacho')
-  article.hashes.each do |art|
+   article.hashes.each do |art|
     a=Article.create(art)
     a.published=true
+    user = User.find_by_login(a.author)
+    comment = Comment.create(:body => "comment by #{a.author}")
     a.user=user
     a.save!
   end
