@@ -44,13 +44,13 @@ Given /^the blog is set up$/ do
 
   User.create!({:login => 'nacho',
                 :password => 'aaaaaaaa',
-                :email => 'joe@snow.com',
+                :email => 'nacho.joe@snow.com',
                 :profile_id => 1,
                 :name => 'admin',
                 :state => 'active'})
 end
 Given /^two related articles have been created with following data:$/ do |article|
-  fields.hashes.each do |art|
+  article.hashes.each do |art|
     a=Article.create(art)
     a.published=true
     a.save!
@@ -68,7 +68,7 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
-And /^I am logged as normal user$/ do
+And /^I am logged as a normal user$/ do
   visit '/accounts/login'
   fill_in 'user_login', :with => 'nacho'
   fill_in 'user_password', :with => 'aaaaaaaa'
