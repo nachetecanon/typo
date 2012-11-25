@@ -45,9 +45,15 @@ Given /^the blog is set up$/ do
   User.create!({:login => 'nacho',
                 :password => 'aaaaaaaa',
                 :email => 'nacho.joe@snow.com',
-                :profile_id => 1,
-                :name => 'admin',
+                :profile_id => 2,
+                :name => 'nacho',
                 :state => 'active'})
+  User.create!({:login => 'paco',
+                :password => 'aaaaaaaa',
+                :email => 'pac.joe@snow.com',
+                :profile_id => 2,
+                :name => 'paco',
+                :state => 'active'})                
 end
 Given /^two related articles have been created with following data:$/ do |article|
   user = User.find_by_login('nacho')
