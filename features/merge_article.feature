@@ -33,5 +33,5 @@ Feature: Merge Articles
     Then I should see "Body content one"
     And I should see "Body content two"
     And I should see "Article 1"
-    And the "author_id" field should contains "nacho"
+    And the "author_id" field should contain "nacho"
     And I should see "comment from paco"

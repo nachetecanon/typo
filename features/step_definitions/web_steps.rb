@@ -139,6 +139,12 @@ When /^(?:|I )fill in the following:$/ do |fields|
   end
 end
 
+When /^I fill in "(.*?)" with the id for "(.*?)"$/ do |field, art_name|
+  article = Article.find_by_title(art_name)
+  step %{I fill in "#{field}" with "#{article.id}"}
+end
+
+
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
