@@ -50,8 +50,10 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 Given /^two related articles have been created with following data:$/ do |article|
-  fields.rows_hash.each do |name, value|
-    Article.create!(:title=> name,:body=>value,:published=>true,:published_at=>Time.now)
+  fields.hashes.each do |art|
+    a=Article.create(art)
+    a.published=true
+    a.save!
   end
 end
 
@@ -136,7 +138,6 @@ When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
 
-When /^(?:|I )uncheck "([^"]*)"$/ do |field|
 
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
