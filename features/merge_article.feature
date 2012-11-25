@@ -16,4 +16,4 @@ Feature: Merge Articles
     Then I should see "Article 1"
     And I should see "Article 2"
     When I follow "Article 1"
-    Then the field "merge_with" should not exist
+    Then I should not see "Merge Articles" 
