@@ -6,9 +6,9 @@ Feature: Merge Articles
   Background:
     Given the blog is set up
     And two related articles have been created with following data:
-      | title     | author |  body            | published_at |
-      | Article 1 | nacho  | Body content one | 20/11/2012 at 22h40  |
-      | Article 2 | paco   | Body content two | 19/11/2012 at 13h29 |
+      | title     | author |  body            | published_at |  comments   |
+      | Article 1 | nacho  | Body content one | 20/11/2012 at 22h40  | comment from paco |
+      | Article 2 | paco   | Body content two | 19/11/2012 at 13h29 | comment from nacho |
 
   Scenario: Non-admin cannot merge articles
     Given I am on the home page
@@ -32,4 +32,6 @@ Feature: Merge Articles
     And I follow "Article 1"
     Then I should see "Body content one"
     And I should see "Body content two"
+    And I should see "Article 1"
     And the "author_id" field should contains "nacho"
+    And I should see "comment from paco"
