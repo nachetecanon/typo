@@ -148,9 +148,9 @@
     </ul>
   </div>    
   <div class=''>
-    <h4><%= _("Merge Articles") %>Merge Articles</h4>
-    <div class='class'>
-      <%= text_field 'merge_with', {:autocomplete => 'off', :style => 'width: 100%'} %>
+    <h4><%= _("Merge Articles") %></h4>
+    <div class='class'><p class='help-block'>Enter an article id to merge with</p>
+      <%= text_field 'article','merge_with', {:autocomplete => 'off', :style => 'width: 100%'} %>
     </div>
   </div>    
   </div>
