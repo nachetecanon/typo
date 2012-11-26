@@ -60,7 +60,7 @@ Given /^two related articles have been created with following data:$/ do |articl
     a=Article.create(art)
     a.published=true
     user = User.find_by_login(a.author)
-    a.comments << Comment.build(:author =>a.author,:body => "comment by #{a.author}")
+    a.add_comment(:author =>a.author,:body => "comment by #{a.author}")
     a.user=user
     a.save!
   end
