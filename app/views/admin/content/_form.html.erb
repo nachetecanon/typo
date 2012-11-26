@@ -149,8 +149,11 @@
   </div>    
   <div class=''>
     <h4><%= _("Merge Articles") %></h4>
-    <div class='class'><p class='help-block'>Enter an article id to merge with</p>
-      <%= text_field :merge_with, {:autocomplete => 'off', :style => 'width: 100%'} %>
+    <div class='class'>
+        <label for='merge_with'>Article Id
+            <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
+        </label>
+       <!-- <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span> -->
     </div>
   </div>    
   </div>
