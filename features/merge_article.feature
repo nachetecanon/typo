@@ -31,6 +31,7 @@ Feature: Merge Articles
   Scenario: the merged article should contain the text of both previous articles
     Given I am on the home page
     And I am logged into the admin panel
+    And I go to the article list page
     When I follow "Article 1"
     When I fill in "merge_with" with the id for "Article 2" 
     And I press "Merge" 
