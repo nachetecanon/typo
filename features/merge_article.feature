@@ -13,6 +13,7 @@ Feature: Merge Articles
   Scenario: A non-admin cannot merge two articles
     Given I am on the home page
     And I am logged as a normal user
+    And I go to the article list page
     Then I should see "Article 1"
     And I should see "Article 2"
     When I follow "Article 1"
