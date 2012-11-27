@@ -4,6 +4,7 @@
         <label for='merge_with' >Article Id
             <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
         </label>
-       <!-- <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span> -->
+        <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span>
+        <%= button_to "Merge", :action => "merge" %>
     </div>
   </div>  
