@@ -5,7 +5,7 @@
             <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
         </label>
         <span>
-        <%= button_to "Merge", :action => "merge", {:class => 'btn primary'} %>
+        <%= link_to(_("Merge"), {:controller => '/articles', :action => 'merge', :id => @article.id}, {:class => 'btn info'}) if @article.id %></span>
         </span>
     </div>
   </div>  
