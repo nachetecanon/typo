@@ -24,7 +24,8 @@ Feature: Merge Articles
     Then I should see "Article 1"
     And I should see "Article 2"
     When I follow "Article 1"
-    Then I should see "Merge Articles"  
+    Then I should be on edit page
+    And I should see "Merge Articles"  
     
   Scenario: the merged article should contain the text of both previous articles
     Given I am on the home page
