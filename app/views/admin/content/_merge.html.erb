@@ -4,8 +4,8 @@
         <label for='merge_with' >Article Id
             <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
         </label>
-        <span id='preview_link'>
-        <%= button_to "Merge", :action => "merge" %>
+        <span>
+        <%= button_to "Merge", :action => "merge", {:class => 'btn primary'} %>
         </span>
     </div>
   </div>  
