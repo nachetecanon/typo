@@ -21,6 +21,7 @@ Feature: Merge Articles
   Scenario: admin user can merge articles
     Given I am on the home page
     And I am logged into the admin panel
+    And I go to the article list page
     Then I should see "Article 1"
     And I should see "Article 2"
     When I follow "Article 1"
