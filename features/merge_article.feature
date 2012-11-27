@@ -25,13 +25,15 @@ Feature: Merge Articles
     And I should see "Article 2"
     When I follow "Article 1"
     Then I should see "Merge Articles"  
+    
+  Scenario: the merged article should contain the text of both previous articles
+    Given I am on the home page
+    And I am logged into the admin panel
+    When I follow "Article 1"
     When I fill in "merge_with" with the id for "Article 2" 
     And I press "Merge" 
-    Then I should see "Article 1"
     And I follow "Article 1"
     Then I should see "Body content one"
     And I should see "Body content two"
-    And I should see "Article 1"
     And the "author_id" field should contain "nacho"
     And I should see "comment from paco"
-  When articles are merged, the merged article should contain the text of both previous articles
