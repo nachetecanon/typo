@@ -10,7 +10,7 @@ Feature: Merge Articles
       | Article 1 | nacho  | Body content one | 20/11/2012 at 22h40  | 
       | Article 2 | paco   | Body content two | 19/11/2012 at 13h29 | 
 
-  Scenario: Non-admin cannot merge articles
+  Scenario: A non-admin cannot merge two articles
     Given I am on the home page
     And I am logged as a normal user
     Then I should see "Article 1"
@@ -34,3 +34,4 @@ Feature: Merge Articles
     And I should see "Article 1"
     And the "author_id" field should contain "nacho"
     And I should see "comment from paco"
+  When articles are merged, the merged article should contain the text of both previous articles
