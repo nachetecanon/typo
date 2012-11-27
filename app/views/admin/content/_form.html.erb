@@ -147,15 +147,8 @@
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </div>    
-  <div style='<%= "display: none;" if current_user.profile_id != 1 %>'>
-    <h4><%= _("Merge Articles") %></h4>
-    <div class='class'>
-        <label for='merge_with'>Article Id
-            <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
-        </label>
-       <!-- <span id='preview_link'><%= link_to(_("Preview"), {:controller => '/articles', :action => 'preview', :id => @article.id}, {:target => 'new', :class => 'btn info'}) if @article.id %></span> -->
-    </div>
-  </div>    
+  <%= render 'admin/content/merge'  if current_user.profile_id != 1 -%>
+    
   </div>
 
 </div>
