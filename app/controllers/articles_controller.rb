@@ -11,7 +11,8 @@ class ArticlesController < ContentController
   }
 
   helper :'admin/base'
-  def merge(other_article_id)
+  def merge
+    debugger
     article=Article.find(other_article_id)
     return error(_("Cannot merge the same article id of current one..."), :status => 200) unless article
     
