@@ -1,11 +1,11 @@
 <div class=''>
     <h4><%= _("Merge Articles") %></h4>
     <div class='class'>
+        <%= form_for @article do |f| %>
         <label for='merge_with' >Article Id
-            <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %>
-        </label>
-        <span>
-            <input type="submit" name="merge_with" title="Merge" id="merge_with" />
-        </span>
+            <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %> </label>
+        <input type="submit" name="merge_with" title="Merge" id="merge_with" />
+
+        <% end %>
     </div>
-  </div>  
+</div>
