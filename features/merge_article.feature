@@ -35,6 +35,7 @@ Feature: Merge Articles
     When I follow "Article 1"
     When I fill in "merge_with" with the id for "Article 2" 
     And I press "Merge" 
+    And I go to the article list page
     And I follow "Article 1"
     Then I should see "Body content one"
     And I should see "Body content two"
