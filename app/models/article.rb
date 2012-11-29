@@ -62,7 +62,7 @@ class Article < Content
   setting :password,                   :string, ''
   class Article::NoSameArticleIdAllowed < StandardError;end
   def merge_with(other_article_id)
-    raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.article_id=other_article_id
+    raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.id=other_article_id
   end
   def initialize(*args)
     super
