@@ -13,7 +13,7 @@ describe Article do
 
     @articles = []
   end
-
+  
   def assert_results_are(*expected)
     assert_equal expected.size, @articles.size
     expected.each do |i|
@@ -628,7 +628,15 @@ describe Article do
         article.should be == already_exist_article
       end
     end
-
+    describe "merge one article with other" do
+      context "when article id provided is the same as current" do
+       it "should raise an exception not allowing merge" do
+         article=Factory.create(:article)
+         lambda {article.merge_with(article.article_id)}.
+          should raise_error(Article::NoSameArticleIdAllowed)
+       end
+      end       
+    end
   end
 end
 

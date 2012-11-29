@@ -60,7 +60,10 @@ class Article < Content
   scope :published_at, lambda {|time_params| { :conditions => { :published => true, :published_at => Article.time_delta(*time_params) }, :order => 'published_at DESC' } }
 
   setting :password,                   :string, ''
-
+  class Article::NoSameArticleIdAllowed < StandardError;end
+  def merge_with(other_article_id)
+    raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.article_id=other_article_id
+  end
   def initialize(*args)
     super
     # Yes, this is weird - PDC

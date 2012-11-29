@@ -12,12 +12,14 @@ class ArticlesController < ContentController
 
   helper :'admin/base'
   def merge
-    debugger
-    other_article_id=params[:merge[:with]]
-    article_parent=Article.find(params[:id])
-    article_to_merge=Article.find(other_article_id)
-    return error(_("Cannot merge the same article id of current one..."), :status => 200) unless article
-    
+    other_article_id=params[:merge][:with]
+    begin
+      return error(_("Cannot merge the same article id of current one..."), :status => 200) if other_article_id=params[:id]
+      article_origin=Article.find(other_article_id)
+      article_dest = Article.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => article_error      
+      return error(_("Article with id '#{other_article_id}' has not being found"), :status => 200) 
+    end
   end
   def index
     respond_to do |format|
