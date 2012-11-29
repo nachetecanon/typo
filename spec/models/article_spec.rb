@@ -632,7 +632,7 @@ describe Article do
       context "when article id provided is the same as current" do
        it "should raise an exception not allowing merge" do
          article=Factory.create(:article)
-         lambda {article.merge_with(article.article_id)}.
+         lambda {article.merge_with(article.id)}.
           should raise_error(Article::NoSameArticleIdAllowed)
        end
       end       
