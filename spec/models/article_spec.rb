@@ -635,6 +635,12 @@ describe Article do
          lambda {article.merge_with(article.id)}.
           should raise_error(Article::NoSameArticleIdAllowed)
        end
+      end
+      context "when article id provided does not exist" do
+        it "should raise an exception of not found" do
+          lambda {article.merge_with(11)}.should
+            raise_error(ActiveRecord::RecordNotFound)
+        end
       end       
     end
   end

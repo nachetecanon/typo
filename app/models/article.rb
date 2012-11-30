@@ -63,6 +63,9 @@ class Article < Content
   class Article::NoSameArticleIdAllowed < StandardError;end
   def merge_with(other_article_id)
     raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.id=other_article_id
+    new_article=Article.find(other_article_id)
+    self.body << new_article.body
+    self.comments << new_article.comments
   end
   def initialize(*args)
     super
