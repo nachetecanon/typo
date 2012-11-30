@@ -13,7 +13,6 @@ describe 'With the contents fixture' do
 
   it '.post_action should not fire immediately for future triggers' do
     lambda do
-      p @page
       Trigger.post_action(Time.now + 2, @page, 'tickle')
       Trigger.count.should == 1
       Trigger.fire

@@ -642,6 +642,13 @@ describe Article do
             raise_error(ActiveRecord::RecordNotFound)
         end
       end       
+      context "when different articles are merged the new article" do
+        it "should have both contents" do
+          article=Factory.create(:article)
+          article2=Factory.create(:article)
+          article.body.should be == article.body << article2.body
+        end
+      end
     end
   end
 end
