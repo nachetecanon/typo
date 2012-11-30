@@ -66,6 +66,7 @@ class Article < Content
     new_article=Article.find(other_article_id)
     self.body << new_article.body
     self.comments << new_article.comments
+    self.save!
   end
   def initialize(*args)
     super
