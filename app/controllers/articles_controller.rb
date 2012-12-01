@@ -20,7 +20,9 @@ class ArticlesController < ContentController
       article_origin.merge_with(article_dest.id)
       render 'edit'
     rescue ActiveRecord::RecordNotFound => article_error      
-      return error(_("Article with id '#{other_article_id}' has not being found"), :status => 200) 
+      return error(_("Article with id #{other_article_id} has not been found"), :status => 200)
+    rescue Article::NoSameArticleIdAllowed => same_error
+      return error(_("Articles with same id cannot be merged"), :status=>200) 
     end
   end
   def index
