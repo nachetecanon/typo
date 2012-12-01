@@ -646,7 +646,8 @@ describe Article do
         it "should have both contents" do
           article=Factory.create(:article)
           article2=Factory.create(:article)
-          article.body.should be == article.body << article2.body
+          article.body.should include article.body 
+          article.body.should include article2.body
         end
       end
     end
