@@ -21,7 +21,7 @@ class ArticlesController < ContentController
     rescue ActiveRecord::RecordNotFound => article_error      
       return error(_("Article with id #{other_article_id} has not been found"), :status => 200)
     rescue Article::NoSameArticleIdAllowed => same_error
-      return error(_("Articles with same id cannot be merged"), :status=>200) 
+      return error(_("Articles with same id (#{article_origin.id},#{article_dest.id}) cannot be merged"), :status=>200) 
     end
   end
   def index
