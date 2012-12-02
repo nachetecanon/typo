@@ -17,11 +17,15 @@ class ArticlesController < ContentController
       article_origin=Article.find(other_article_id)
       article_dest = Article.find(params[:id])
       article_origin.merge_with(article_dest.id)
-      render 'edit'
-    rescue ActiveRecord::RecordNotFound => article_error      
-      return error(_("Article with id #{other_article_id} has not been found"), :status => 200)
+      flash[:notice]=_("Articles successfully merged")
+      #render 'edit'
+      redirect_to :action => 'index'
+    rescue ActiveRecord::RecordNotFound => article_error     
+       flash[:error]=_("Article with id #{other_article_id} has not been found")
+      return redirect_to :action => 'index'
     rescue Article::NoSameArticleIdAllowed => same_error
-      return error(_("Articles with same id (#{article_origin.id},#{article_dest.id}) cannot be merged"), :status=>200) 
+      flash[:error]=_("Articles with same id (#{article_origin.id},#{article_dest.id}) cannot be merged") 
+      return redirect_to :action => 'index'
     end
   end
   def index
