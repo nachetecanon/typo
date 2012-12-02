@@ -40,5 +40,5 @@ Feature: Merge Articles
     Then I should see "Body content one"
     And I should see "Body content two"
     When I visit the comments list with id for "Article 1"
-    And I should see "comment from paco"
-    And I should see "comment from nacho"
+    And I should see "comment by paco"
+    And I should see "comment by nacho"
