@@ -143,7 +143,7 @@ When /^I fill in "(.*?)" with the id for "(.*?)"$/ do |field, art_name|
   article = Article.find_by_title(art_name)
   step %{I fill in "#{field}" with "#{article.id}"}
 end
-When /^I go to the comments list with id for "(.*?)"$/ do |art_name|
+When /^I visit the comments list with id for "(.*?)"$/ do |art_name|
   article = Article.find_by_title(art_name)
   visit path_to("the comments list page for id #{article.id}")
 end

@@ -39,6 +39,6 @@ Feature: Merge Articles
     And I follow "Article 1"
     Then I should see "Body content one"
     And I should see "Body content two"
-    When I go to the comments list with id for "Article 1"
+    When I visit the comments list with id for "Article 1"
     And I should see "comment from paco"
     And I should see "comment from nacho"
