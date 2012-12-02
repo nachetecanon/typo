@@ -14,8 +14,8 @@ class ArticlesController < ContentController
   def merge
     other_article_id=params[:merge][:with]
     begin
-      article_origin=Article.find(other_article_id)
-      article_dest = Article.find(params[:id])
+      article_dest=Article.find(other_article_id)
+      article_origin = Article.find(params[:id])
       article_origin.merge_with(article_dest.id)
       flash[:notice]="Articles successfully merged"
       #render 'edit'
