@@ -65,7 +65,7 @@ class Article < Content
     raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.id==other_article_id
     new_article=Article.find(other_article_id)
     self.body = new_article.body + self.body
-    new_article.comments each do |com|
+    new_article.comments.each do |com|
       self.add_comment(:author =>self.author,:body => com.body)
     end
     self.save!
