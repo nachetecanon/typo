@@ -21,6 +21,8 @@ module NavigationHelpers
       '/admin/content/edit'
     when /^the article list page$/
       '/admin/content'
+    when /^the comments list page for id (.*)$/
+      '/admin/feedback/article/$1'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
