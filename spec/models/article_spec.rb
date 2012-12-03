@@ -650,8 +650,12 @@ describe Article do
           comment2=Factory.create(:comment)
           comment1.body='Body of comment 1'
           comment2.body='Body of comment 2'
+          article.body='Body of article 1'
+          article2.body='Body of article 2'
           article.comments << comment1
           article2.comments << comment2
+          article.save!
+          article2.save!
           new_art=article.merge_with(article2.id)
           new_art.body.should include article.body 
           new_art.body.should include article2.body
