@@ -644,7 +644,7 @@ describe Article do
       end       
       context "when different articles are merged the new article" do
         it "should have both contents and title from first article and comments" do
-          article=Article.create(:article)
+          article=Factory.create(:article)
           article2=Factory.create(:article)
           comment1=Factory.create(:comment)
           comment2=Factory.create(:comment)
@@ -663,6 +663,10 @@ describe Article do
           new_art=article.merge_with(article2.id)
           new_art.body.should include article.body 
           new_art.body.should include article2.body
+          lambda {Article.find(article.id)}.should
+           raise_error(ActiveRecord::RecordNotFound)
+          lambda {Article.find(article2.id)}.should
+           raise_error(ActiveRecord::RecordNotFound)
         end
       end
     end
