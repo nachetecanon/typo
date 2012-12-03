@@ -16,10 +16,9 @@ class ArticlesController < ContentController
     begin
       article_dest=Article.find(other_article_id)
       article_origin = Article.find(params[:id])
-      article_origin.merge_with(article_dest.id)
+      article = article_origin.merge_with(article_dest.id)
       flash[:notice]="Articles successfully merged"
-      #render 'edit'
-      return redirect_to :action => 'index'
+     debugger
     rescue ActiveRecord::RecordNotFound => article_error     
        flash[:error]=_("Article with id #{other_article_id} has not been found")
       return redirect_to :action => 'index'
