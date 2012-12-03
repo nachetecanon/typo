@@ -69,13 +69,13 @@ class Article < Content
     final = Article.create(:title => first.title, :author => first.author, :body => merged_body, 
       :user_id => first.user_id, :published => true, :allow_comments => true)
     first.comments.each do |com|
-      final.add_comment(:author =>self.author,:body => com.body)
+      final.add_comment(:author =>self.author,:body => com.body,:published => true)
     end
     last.comments.each do |com|
-      final.add_comment(:author =>self.author,:body => com.body)
+      final.add_comment(:author =>self.author,:body => com.body,:published =>true)
     end
-    first.destroy!
-    last.destroy!
+    first.destroy
+    last.destroy
     final.save!
   end
   def initialize(*args)
