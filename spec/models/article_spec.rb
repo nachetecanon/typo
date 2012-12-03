@@ -651,6 +651,8 @@ describe Article do
           comment1.body='Body of comment 1'
           comment2.body='Body of comment 2'
           article.body='Body of article 1'
+          article.title='Title of article 1'
+          article2.title='Title of article 2'
           article2.body='Body of article 2'
           article.comments << comment1
           article2.comments << comment2
