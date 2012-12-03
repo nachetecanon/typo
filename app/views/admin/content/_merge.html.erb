@@ -4,7 +4,7 @@
         <%= form_tag  :merge_articles, :id=>@article do  %>
         <label for='merge_with' >Article Id
             <%= text_field :merge, :with, {:autocomplete => 'off', :style => 'width: 100%'} %> </label>
-        <input type="submit" name="merge_with" title="Merge" id="merge_with" />
+        <input type="submit" name="merge_with" title="Merge" id="merge_with" value="Merge" />
 
         <% end %>
     </div>
