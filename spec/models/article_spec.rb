@@ -643,11 +643,18 @@ describe Article do
         end
       end       
       context "when different articles are merged the new article" do
-        it "should have both contents" do
-          article=Factory.create(:article)
+        it "should have both contents and title from first article and comments" do
+          article=Article.create(:article)
           article2=Factory.create(:article)
-          article.body.should include article.body 
-          article.body.should include article2.body
+          comment1=Factory.create(:comment)
+          comment2=Factory.create(:comment)
+          comment1.body='Body of comment 1'
+          comment2.body='Body of comment 2'
+          article.comments << comment1
+          article2.comments << comment2
+          new_art=article.merge_with(article2.id)
+          new_art.body.should include article.body 
+          new_art.body.should include article2.body
         end
       end
     end
