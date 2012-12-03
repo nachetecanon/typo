@@ -652,6 +652,8 @@ describe Article do
           comment2.user=article2.user
           comment1.body='Body of comment 1'
           comment2.body='Body of comment 2'
+          coment1.save
+          coment2.save
           article.body='Body of article 1'
           article.title='Title of article 1'
           article2.title='Title of article 2'

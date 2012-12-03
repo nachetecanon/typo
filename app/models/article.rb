@@ -74,8 +74,8 @@ class Article < Content
     last.comments.each do |com|
       final.add_comment(:author =>self.author,:body => com.body)
     end
-    first.destroy
-    last.destroy
+    first.destroy!
+    last.destroy!
     final.save!
   end
   def initialize(*args)
