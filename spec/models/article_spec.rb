@@ -648,6 +648,8 @@ describe Article do
           article2=Factory.create(:article)
           comment1=Factory.create(:comment)
           comment2=Factory.create(:comment)
+          comment1.user=article.user
+          comment2.user=article2.user
           comment1.body='Body of comment 1'
           comment2.body='Body of comment 2'
           article.body='Body of article 1'
