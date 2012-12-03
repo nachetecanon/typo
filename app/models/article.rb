@@ -68,6 +68,7 @@ class Article < Content
     new_article.comments.each do |com|
       self.add_comment(:author =>self.author,:body => com.body)
     end
+    self.destroy
     self.save!
   end
   def initialize(*args)
