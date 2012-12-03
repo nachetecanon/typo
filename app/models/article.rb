@@ -63,13 +63,20 @@ class Article < Content
   class Article::NoSameArticleIdAllowed < StandardError;end
   def merge_with(other_article_id)
     raise Article::NoSameArticleIdAllowed, 'Cannot merge an article with it self' if self.id==other_article_id
-    new_article=Article.find(other_article_id)
-    self.body = new_article.body + self.body
-    new_article.comments.each do |com|
-      self.add_comment(:author =>self.author,:body => com.body)
+    last=Article.find(other_article_id)
+    first=Article.find(self.id)
+    merged_body=first.body+last.body
+    final = Article.create(:title => first.title, :author => first.author, :body => merged_body, 
+      :user_id => first.user_id, :published => true, :allow_comments => true)
+    new_article.body = merge_article.body + old.body
+    first.comments.each do |com|
+      final.add_comment(:author =>self.author,:body => com.body)
     end
-    self.destroy
-    self.save!
+    last.comments.each do |com|
+      final.add_comment(:author =>self.author,:body => com.body)
+    end
+    first.destroy
+    final.save!
   end
   def initialize(*args)
     super
