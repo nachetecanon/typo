@@ -68,7 +68,6 @@ class Article < Content
     merged_body=first.body+last.body
     final = Article.create(:title => first.title, :author => first.author, :body => merged_body, 
       :user_id => first.user_id, :published => true, :allow_comments => true)
-    new_article.body = merge_article.body + old.body
     first.comments.each do |com|
       final.add_comment(:author =>self.author,:body => com.body)
     end
