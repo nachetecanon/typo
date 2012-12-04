@@ -9,6 +9,6 @@ Feature: Merge Articles
   Scenario: admin user can create categories
     Given I am on the home page
     And I am logged into the admin panel
-    And I go to the new categorie's' page
+    And I go to the new categorie's page
     Then I should see "Keywords"
     

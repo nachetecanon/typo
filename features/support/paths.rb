@@ -21,7 +21,7 @@ module NavigationHelpers
       '/admin/content/edit'
     when /^the article list page$/
       '/admin/content'
-    when /^the new categorie's' page$/
+    when /^the new categorie's page$/
       '/admin/categories/new'
     when /^the comments list page for id (.*)$/
       '/admin/feedback/article/'+$1
