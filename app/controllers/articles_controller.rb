@@ -12,7 +12,7 @@ class ArticlesController < ContentController
 
   helper :'admin/base'
   def merge
-    other_article_id=params[:merge][:with]
+    other_article_id=params[:merge_with]
     begin
       article_dest=Article.find(other_article_id)
       article_origin = Article.find(params[:id])
