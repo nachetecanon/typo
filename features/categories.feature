@@ -11,7 +11,7 @@ Feature: Merge Articles
     And I am logged into the admin panel
     And I go to the new categorie's page
     When I fill in "name" with "Categorie 1"
-    and I fill in "keywords" with "key1 key2"
+    and I fill in "keywords" with "key1key2"
     and I fill in "description" with "Description categorie 1"
     and I press "Save"
     Then I should see "Categorie 1"
