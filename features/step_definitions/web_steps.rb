@@ -65,7 +65,11 @@ Given /^two related articles have been created with following data:$/ do |articl
     a.save!
   end
 end
-
+Given /^a categorie exists with following data:$/ do |category|
+  category.hashes.each do |cat|
+      Category.create!(cat)
+  end
+end
 And /^I am logged into the admin panel$/ do
   visit '/accounts/login'
   fill_in 'user_login', :with => 'admin'
