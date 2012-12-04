@@ -14,6 +14,7 @@ class ArticlesController < ContentController
   def merge
     other_article_id=params[:merge_with]
     begin
+      debugger
       article_dest=Article.find(other_article_id)
       article_origin = Article.find(params[:id])
       article = article_origin.merge_with(article_dest.id)
