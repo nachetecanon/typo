@@ -77,6 +77,7 @@ class Article < Content
     first.destroy
     last.destroy
     final.save!
+    final
   end
   def initialize(*args)
     super
