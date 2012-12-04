@@ -22,10 +22,10 @@ class ArticlesController < ContentController
       return redirect_to :action => 'index'
     rescue ActiveRecord::RecordNotFound => article_error     
        flash[:error]=_("Article with id #{other_article_id} has not been found")
-      render :action => :edit
+      return redirect_to :controller => 'admin/content',:id=>params[:id]
     rescue Article::NoSameArticleIdAllowed => same_error
       flash[:error]=_("Articles with same id (#{article_origin.id},#{article_dest.id}) cannot be merged") 
-      render :action => :edit
+      return redirect_to :controller => 'admin/content',:id=>params[:id]
     end
   end
   def index
